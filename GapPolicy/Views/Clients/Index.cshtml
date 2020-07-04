@@ -3,5 +3,23 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Clients Index</h2>
+<h2>Clients Manager</h2>
 
+<div class="row">
+    <div class="col-lg-12">
+        <table id="tableClientInfo" class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Identification</th>
+                    <th>Name</th>
+                    <th>PhoneNumber</th>
+                    <th>Mail</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="tblClientInfo"></tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/Scripts/Project/Clients.js"></script>

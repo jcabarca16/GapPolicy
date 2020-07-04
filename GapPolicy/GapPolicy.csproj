@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -99,9 +102,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\IconGap.png" />
+    <Content Include="Scripts\FrameWorks\datatables.min.js" />
     <Content Include="Scripts\Project\Clients.js" />
     <Content Include="Scripts\Project\Policy.js" />
     <Content Include="Scripts\Project\PolicyType.js" />
@@ -141,6 +142,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Styles\Frameworks\datatables.min.css" />
     <Content Include="Styles\Project\Site.css" />
     <Content Include="Scripts\FrameWorks\bootstrap.js" />
     <Content Include="Scripts\FrameWorks\bootstrap.min.js" />
@@ -149,6 +151,7 @@
     <Content Include="Scripts\FrameWorks\jquery-3.3.1.min.js" />
     <Content Include="Scripts\FrameWorks\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\FrameWorks\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\FrameWorks\jquery-3.5.1.min.js" />
     <None Include="Scripts\FrameWorks\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\FrameWorks\jquery.validate.js" />
     <Content Include="Scripts\FrameWorks\jquery.validate.min.js" />
@@ -187,6 +190,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\FrameWorks\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\FrameWorks\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GapPolicyBUSINESS\GapPolicyBUSINESS.csproj">
+      <Project>{E46DB5C3-8D03-44C3-807E-BF9C4900E02E}</Project>
+      <Name>GapPolicyBUSINESS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GapPolicyDAO\GapPolicyDAO.csproj">
+      <Project>{9BC65981-4AF6-4249-812F-E43CA5F3E5AB}</Project>
+      <Name>GapPolicyDAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

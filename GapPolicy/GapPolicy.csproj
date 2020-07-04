@@ -131,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\IconGap.png" />
+    <Content Include="Scripts\Project\Clients.js" />
+    <Content Include="Scripts\Project\Policy.js" />
+    <Content Include="Scripts\Project\PolicyType.js" />
     <Content Include="Styles\Frameworks\bootstrap-theme.css" />
     <Content Include="Styles\Frameworks\bootstrap-theme.min.css" />
     <Content Include="Styles\Frameworks\bootstrap.css" />
@@ -171,7 +174,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\Project\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -16,29 +16,34 @@ namespace GapPolicyDAL
     public class Manager
     {
         //SqlConnection conexion = new SqlConnection(@"server=(localdb)\JoseAbarcaServer; database=Gap_BD; integrated security = true");
-        string conexionString = @"server=(localdb)\JoseAbarcaServer; database=Gap_BD; integrated security = true";
+        readonly string conexionString = @"server=(localdb)\JoseAbarcaServer; database=Gap_BD; integrated security = true";
 
         public string ExeDBQuery<T>(T Obj, string SpName) {
             try {
-                SqlQueryObject sqlObj = new SqlQueryObject();
-
-                sqlObj.ParameterList = new List<SpParameter>(Obj.GetType().GetProperties().Where(x => x.GetValue(Obj) != null
-                        && !string.IsNullOrEmpty(x.GetValue(Obj).ToString())).Select(x =>
-                        new SpParameter
-                        {
-                            Name = x.Name,
-                            Value = x.GetValue(Obj).ToString()
-                        }));
+                SqlQueryObject sqlObj = new SqlQueryObject
+                {
+                    ParameterList = new List<SpParameter>(Obj.GetType().GetProperties().Where(x => x.GetValue(Obj) != null
+                            && !string.IsNullOrEmpty(x.GetValue(Obj).ToString())).Select(x =>
+                            new SpParameter
+                            {
+                                Name = x.Name,
+                                Value = x.GetValue(Obj).ToString()
+                            }))
+                };
 
                 using (SqlConnection connection = new SqlConnection(conexionString))
                 {
-                    SqlCommand command = new SqlCommand(SpName, connection);
-                    command.CommandType = CommandType.StoredProcedure;
+                    SqlCommand command = new SqlCommand(SpName, connection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
 
                     foreach (SpParameter param in sqlObj.ParameterList) {
-                        SqlParameter parameterSql = new SqlParameter();
-                        parameterSql.ParameterName = "@" + param.Name;
-                        parameterSql.Value = param.Value;
+                        SqlParameter parameterSql = new SqlParameter
+                        {
+                            ParameterName = "@" + param.Name,
+                            Value = param.Value
+                        };
                         command.Parameters.Add(parameterSql);
                     }
 
@@ -51,6 +56,46 @@ namespace GapPolicyDAL
                 }
 
                 return sqlObj.JSonObject;
+            }
+            catch (Exception ex) { throw new Exception(ex.Message); }
+        }
+        public string ExeDBNonQuery<T>(T Obj, string SpName)
+        {
+            try
+            {
+                SqlQueryObject sqlObj = new SqlQueryObject
+                {
+                    ParameterList = new List<SpParameter>(Obj.GetType().GetProperties().Where(x => x.GetValue(Obj) != null
+                            && !string.IsNullOrEmpty(x.GetValue(Obj).ToString())).Select(x =>
+                            new SpParameter
+                            {
+                                Name = x.Name,
+                                Value = x.GetValue(Obj).ToString()
+                            }))
+                };
+
+                using (SqlConnection connection = new SqlConnection(conexionString))
+                {
+                    SqlCommand command = new SqlCommand(SpName, connection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    foreach (SpParameter param in sqlObj.ParameterList)
+                    {
+                        SqlParameter parameterSql = new SqlParameter
+                        {
+                            ParameterName = "@" + param.Name,
+                            Value = param.Value
+                        };
+                        command.Parameters.Add(parameterSql);
+                    }
+
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+                return "Complete";
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }

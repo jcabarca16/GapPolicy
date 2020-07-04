@@ -1,4 +1,5 @@
 ﻿using GapPolicyBUSINESS;
+using GapPolicyDAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,23 @@ namespace GapPolicy.Controllers
         }
         public ActionResult GetClients()
         {
-            return Json(clientBus.getClients(), JsonRequestBehavior.AllowGet);
+            return Json(clientBus.GetClients(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult DeleteClients(string Identification)
+        {
+            return Json(clientBus.DeleteClients(Identification));
+        }
+        public ActionResult InsertClients(Client client)
+        {
+            return Json(clientBus.InsertClients(client));
+        }
+        public ActionResult UpdateClients(Client client)
+        {
+            return Json(clientBus.UpdateClients(client));
+        }
+        public ActionResult GetClientsIdentification(string Identification)
+        {
+            return Json(clientBus.GetClientIdentification(Identification));
         }
     }
 }

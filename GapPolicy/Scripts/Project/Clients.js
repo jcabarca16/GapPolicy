@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $("#tabs-clients").tabs();
     loadClients();
 });
 function loadClients() {
@@ -22,6 +23,7 @@ function loadClients() {
                         htmlText += '<td>' + item.PhoneNumber + '</td>';
                         htmlText += '<td>' + item.Mail + '</td>';
                         htmlText += '<td>' + item.Address + '</td>';
+                        htmlText += '<td>' + '<a href="#" id="btn-delete-client" class="btn btn-primary" onclick="deleteClient(' + item.Identification + ')"> delete </a>' + ' | ' + '<a href="#" id="btn-update-client" class="btn btn-primary btn-info"> update </a>' + '</td>';
                         htmlText += '</tr>';
                     });
                 }
@@ -29,8 +31,34 @@ function loadClients() {
                 $("#tableClientInfo").dataTable().fnClearTable();
                 $("#tableClientInfo").dataTable().fnDestroy();
                 $('#tblClientInfo').html(htmlText);
-                $("#tableClientInfo").dataTable();
+                $('#tableClientInfo').DataTable();
                 $("select[name*='tblClientInfo']").change();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+}
+function deleteClient(identification) {
+
+    var empObj = {
+        Identification: identification,
+    };
+
+    processing: true; // for show progress bar  
+    serverSide: true; // for process server side  
+    filter: true; // this is for disable filter (search box)  
+    orderMulti: false; // for disable multiple column at once
+    paging: false;
+    $.ajax(
+        {
+            url: "/Clients/DeleteClients",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            success: function (result) {
+                alert("Complete");
+                loadClients();
             },
             error: function (errormessage) {
                 alert(errormessage.responseText);

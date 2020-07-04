@@ -34,4 +34,18 @@ footer {
     bottom:0;
     right:20px;
 }
+.form-panel {
+    border: solid 1px #eee;
+    border-radius: 10px;
+    width: 320px;
+    margin: 10px auto;
+    padding: 25px;
+    background-color: #eee;
+}
 
+/*MEDIA QUERYS*/
+@media (max-width: 600px) {
+    .form-panel {
+        width: 90%;
+    }
+}

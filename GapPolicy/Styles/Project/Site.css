@@ -42,10 +42,18 @@ footer {
     padding: 25px;
     background-color: #eee;
 }
-
+#modalClient .modal-dialog {
+    width: 370px;
+}
+#modalClient .modal-content {
+    padding: 10px;
+}
 /*MEDIA QUERYS*/
 @media (max-width: 600px) {
     .form-panel {
+        width: 90%;
+    }
+    #modalClient .modal-dialog {
         width: 90%;
     }
 }

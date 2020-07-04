@@ -34,7 +34,7 @@ namespace GapPolicy.Controllers
         }
         public ActionResult GetClientsIdentification(string Identification)
         {
-            return Json(clientBus.GetClientIdentification(Identification));
+            return Json(clientBus.GetClientIdentification(Identification), JsonRequestBehavior.AllowGet);
         }
     }
 }

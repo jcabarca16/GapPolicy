@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace GapPolicy.Controllers
 {
+    [Authorize]
     public class ClientsController : Controller
     {
         ClientBusiness clientBus = new ClientBusiness();
@@ -16,22 +17,32 @@ namespace GapPolicy.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public ActionResult GetClients()
         {
             return Json(clientBus.GetClients(), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
         public ActionResult DeleteClients(string Identification)
         {
             return Json(clientBus.DeleteClients(Identification));
         }
+
+        [HttpPost]
         public ActionResult InsertClients(Client client)
         {
             return Json(clientBus.InsertClients(client));
         }
+
+        [HttpPost]
         public ActionResult UpdateClients(Client client)
         {
             return Json(clientBus.UpdateClients(client));
         }
+
+        [HttpGet]
         public ActionResult GetClientsIdentification(string Identification)
         {
             return Json(clientBus.GetClientIdentification(Identification), JsonRequestBehavior.AllowGet);

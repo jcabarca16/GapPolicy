@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="Policy.cs" />
     <Compile Include="PolicyCatalog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

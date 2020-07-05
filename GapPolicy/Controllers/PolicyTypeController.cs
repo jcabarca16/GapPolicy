@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace GapPolicy.Controllers
 {
+    [Authorize]
     public class PolicyTypeController : Controller
     {
         // GET: PolicyType

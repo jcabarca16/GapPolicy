@@ -3989,14 +3989,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eee;
+  background-color: #3c7ab7;
 }
 .nav > li.disabled > a {
   color: #777;
 }
 .nav > li.disabled > a:hover,
 .nav > li.disabled > a:focus {
-  color: #777;
+  color: #3c7ab7;
   text-decoration: none;
   cursor: not-allowed;
   background-color: transparent;

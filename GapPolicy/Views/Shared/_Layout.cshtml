@@ -7,7 +7,7 @@
     <link rel="icon" href="~/Images/IconGap.png" type="image/png" />
     <title>Policy GAP</title>
     @*CSS*@
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/Styles/Frameworks/jquery-ui.css" rel="stylesheet" />
     <link href="~/Styles/Frameworks/bootstrap.css" rel="stylesheet" />
     <link href="~/Scripts/FrameWorks/DataTables/datatables.css" rel="stylesheet" />
     <link href="~/Styles/Project/Site.css" rel="stylesheet" />
@@ -36,6 +36,12 @@
                     <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
                     <li>@Html.ActionLink("Policys", "Index", "Policy")</li>
                     <li>@Html.ActionLink("Policy Types", "Index", "PolicyType")</li>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Log Out", "LogOut", "Login")</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

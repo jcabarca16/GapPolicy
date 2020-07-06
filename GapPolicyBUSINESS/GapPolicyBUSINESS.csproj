@@ -47,6 +47,7 @@
     <Compile Include="ClientBusiness.cs" />
     <Compile Include="LoginBusiness.cs" />
     <Compile Include="PolicyBusiness.cs" />
+    <Compile Include="PolicyTypeBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

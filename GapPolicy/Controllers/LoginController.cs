@@ -28,11 +28,7 @@ namespace GapPolicy.Controllers
                 credentials = bus.GetCredentials(login).FirstOrDefault();
                 if (credentials != null)
                 {
-                    Session["LoginCredentials"] = credentials;
-                    Session["UserName"] = credentials.Name;
-                    Session["UserId"] = credentials.Identification;
-
-                    FormsAuthentication.SetAuthCookie(credentials.Name, true);
+                    FormsAuthentication.SetAuthCookie(credentials.Identification, true);                   
                     return RedirectToAction("Index", "Home");
                 }
                 else

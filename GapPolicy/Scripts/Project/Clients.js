@@ -41,29 +41,31 @@ function loadClients() {
 }
 function deleteClient(identification) {
 
-    var empObj = {
-        Identification: identification,
-    };
+    if (confirm("If you delete the client, the system eliminates the policies linked to this client, do you want to continue?") == true) {
+        var empObj = {
+            Identification: identification,
+        };
 
-    processing: true; // for show progress bar  
-    serverSide: true; // for process server side  
-    filter: true; // this is for disable filter (search box)  
-    orderMulti: false; // for disable multiple column at once
-    paging: false;
-    $.ajax(
-        {
-            url: "/Clients/DeleteClients",
-            data: JSON.stringify(empObj),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            success: function (result) {
-                alert("Complete");
-                loadClients();
-            },
-            error: function (errormessage) {
-                alert(errormessage.responseText);
-            }
-        });
+        processing: true; // for show progress bar  
+        serverSide: true; // for process server side  
+        filter: true; // this is for disable filter (search box)  
+        orderMulti: false; // for disable multiple column at once
+        paging: false;
+        $.ajax(
+            {
+                url: "/Clients/DeleteClients",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    alert("Complete");
+                    loadClients();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+    }    
 }
 function loadClientIdentification(identification) {
 
@@ -178,6 +180,7 @@ function insertClient() {
             success: function (result) {
                 alert("Complete");
                 loadClients();
+                $("#tabs-clients").tabs("option", "active", 1);
                 $('.form-panel').find('input').val('');
 
             },

@@ -27,18 +27,20 @@ namespace GapPolicy.Controllers
         [HttpPost]
         public ActionResult DeletePolicy(int Id)
         {
-            return Json(policytBus.DeletePolicy(Id));
+            return Json(policytBus.DeletePolicy(Id, User.Identity.Name));
         }
 
         [HttpPost]
         public ActionResult InsertPolicy(Policy policy)
         {
+            policy.ModificationUser = User.Identity.Name;
             return Json(policytBus.InsertPolicy(policy));
         }
 
         [HttpPost]
         public ActionResult UpdatePolicy(Policy policy)
         {
+            policy.ModificationUser = User.Identity.Name;
             return Json(policytBus.UpdatePolicy(policy));
         }
 

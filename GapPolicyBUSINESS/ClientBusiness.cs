@@ -3,9 +3,6 @@ using GapPolicyDAO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GapPolicyBUSINESS
 {
@@ -74,7 +71,7 @@ namespace GapPolicyBUSINESS
                     client.PhoneNumber,
                     client.Mail,
                     client.Address,
-                    ModificationUser = "206480980",
+                    client.ModificationUser,
                     Action = "INSERT"
                 };
 
@@ -93,7 +90,7 @@ namespace GapPolicyBUSINESS
                     client.PhoneNumber,
                     client.Mail,
                     client.Address,
-                    ModificationUser = "206480980",
+                    client.ModificationUser,
                     Action = "UPDATE"
                 };
 

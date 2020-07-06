@@ -3,9 +3,6 @@ using GapPolicyDAO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GapPolicyBUSINESS
 {
@@ -51,13 +48,14 @@ namespace GapPolicyBUSINESS
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
-        public string DeletePolicy(int Id)
+        public string DeletePolicy(int Id, string user)
         {
             try
             {
                 dynamic DynamicObj = new
                 {
                     Id,
+                    ModificationUser = user,
                     Action = "DELETE"
                 };
 
@@ -80,7 +78,7 @@ namespace GapPolicyBUSINESS
                     Policy.Period,
                     Policy.Cost,
                     Policy.RiskType,
-                    ModificationUser = "206480980",
+                    Policy.ModificationUser,
                     Action = "INSERT"
                 };
 
@@ -103,7 +101,7 @@ namespace GapPolicyBUSINESS
                     Policy.Period,
                     Policy.Cost,
                     Policy.RiskType,
-                    ModificationUser = "206480980",
+                    Policy.ModificationUser,
                     Action = "UPDATE"
                 };
 

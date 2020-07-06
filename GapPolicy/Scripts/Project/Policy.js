@@ -104,7 +104,7 @@ function showModalPolicy(id) {
 
                     $('#txtPolicyIdUp').val(result[0].Id);
                     $('#txtPolicyClientUP').val(result[0].Client);
-                    $('#txtPolicyTypeUP').val(result[0].TypeDescrip);
+                    $('#txtPolicyTypeUP').val(result[0].Type);
                     $('#txtPolicyPercentageUP').val(result[0].Percentage);
                     $('#txtPolicyStartDateUp').val(result[0].StartDate);
                     $('#txtPolicyEndDateUp').val(result[0].EndDate);
@@ -124,73 +124,86 @@ function showModalPolicy(id) {
         });
 }
 function updatePolicy() {
-    var empObj = {
-        Id: $('#txtPolicyIdUp').val(),
-        Client: $('#txtPolicyClientUP').val(),
-        Type: $('#txtPolicyTypeUP').val(),
-        Percentage: $('#txtPolicyPercentageUP').val(),
-        StartDate: $('#txtPolicyStartDateUp').val(),
-        EndDate: $('#txtPolicyEndDateUp').val(),
-        Period: $('#txtPolicyPeriodUp').val(),
-        Cost: $('#txtPolicyCostUp').val(),
-        RiskType: $('#txtPolicyRiskTypeUp').val(),
-    };
 
-    processing: true; // for show progress bar  
-    serverSide: true; // for process server side  
-    filter: true; // this is for disable filter (search box)  
-    orderMulti: false; // for disable multiple column at once
-    paging: false;
-    $.ajax(
-        {
-            url: "/Policy/UpdatePolicy",
-            data: JSON.stringify(empObj),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            success: function (result) {
-                alert("Complete");
-                loadPolicy();
-                $('#modalPolicy').modal('hide');
+    if (($('#txtPolicyRiskTypeUp').val() == 'high') && ($('#txtPolicyPercentageUP').val() > 50)) {
+        alert("If the risk is high, the coverage percentage must be less than or equal to 50%");
+    }
+    else {
+        var empObj = {
+            Id: $('#txtPolicyIdUp').val(),
+            Client: $('#txtPolicyClientUP').val(),
+            Type: $('#txtPolicyTypeUP').val(),
+            Percentage: $('#txtPolicyPercentageUP').val(),
+            StartDate: $('#txtPolicyStartDateUp').val(),
+            EndDate: $('#txtPolicyEndDateUp').val(),
+            Period: $('#txtPolicyPeriodUp').val(),
+            Cost: $('#txtPolicyCostUp').val(),
+            RiskType: $('#txtPolicyRiskTypeUp').val(),
+        };
 
-            },
-            error: function (errormessage) {
-                alert(errormessage.responseText);
-            }
-        });
+        processing: true; // for show progress bar  
+        serverSide: true; // for process server side  
+        filter: true; // this is for disable filter (search box)  
+        orderMulti: false; // for disable multiple column at once
+        paging: false;
+        $.ajax(
+            {
+                url: "/Policy/UpdatePolicy",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    alert("Complete");
+                    loadPolicy();
+                    $('#modalPolicy').modal('hide');
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+    }
 }
 function insertPolicy() {
-    var empObj = {
-        Client: $('#txtPolicyClient').val(),
-        Type: $('#txtPolicyType').val(),
-        Percentage: $('#txtPolicyPercentage').val(),
-        StartDate: $('#txtPolicyStartDate').val(),
-        EndDate: $('#txtPolicyEndDate').val(),
-        Period: $('#txtPolicyPeriod').val(),
-        Cost: $('#txtPolicyCost').val(),
-        RiskType: $('#txtPolicyRiskType').val(),
-    };
 
-    processing: true; // for show progress bar  
-    serverSide: true; // for process server side  
-    filter: true; // this is for disable filter (search box)  
-    orderMulti: false; // for disable multiple column at once
-    paging: false;
-    $.ajax(
-        {
-            url: "/Policy/InsertPolicy",
-            data: JSON.stringify(empObj),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            success: function (result) {
-                alert("Complete");
-                loadPolicy();
-                $('.form-panel').find('input').val('');
+    if (($('#txtPolicyRiskType').val() == 'high') && ($('#txtPolicyPercentage').val() > 50)) {
+        alert("If the risk is high, the coverage percentage must be less than or equal to 50%");
+    }
+    else {
+        var empObj = {
+            Client: $('#txtPolicyClient').val(),
+            Type: $('#txtPolicyType').val(),
+            Percentage: $('#txtPolicyPercentage').val(),
+            StartDate: $('#txtPolicyStartDate').val(),
+            EndDate: $('#txtPolicyEndDate').val(),
+            Period: $('#txtPolicyPeriod').val(),
+            Cost: $('#txtPolicyCost').val(),
+            RiskType: $('#txtPolicyRiskType').val(),
+        };
 
-            },
-            error: function (errormessage) {
-                alert(errormessage.responseText);
-            }
-        });
+        processing: true; // for show progress bar  
+        serverSide: true; // for process server side  
+        filter: true; // this is for disable filter (search box)  
+        orderMulti: false; // for disable multiple column at once
+        paging: false;
+        $.ajax(
+            {
+                url: "/Policy/InsertPolicy",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function (result) {
+                    alert("Complete");
+                    loadPolicy();
+                    $("#tabs-policy").tabs("option", "active", 1);
+                    $('.form-panel').find('input').val('');
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+    }
 }
 function loadClients() {
     processing: true; // for show progress bar  
@@ -231,7 +244,7 @@ function loadTypes() {
                 if (result.length > 0) {
                     $.each(result, function (key, item) {
                         $("#txtPolicyType").append('<option value="' + item.Id + '">' + item.Type + '</option>');
-                        $("#txtPolicyTypeTP").append('<option value="' + item.Id + '">' + item.Type + '</option>');
+                        $("#txtPolicyTypeUP").append('<option value="' + item.Id + '">' + item.Type + '</option>');
                     });
                 }
             },
